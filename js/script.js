@@ -41,13 +41,18 @@
                 var $tdYear = doc.createElement('td');
                 var $tdPlate = doc.createElement('td');
                 var $tdColor = doc.createElement('td');
+                var $tdRem = doc.createElement('td');
                 var $img = doc.createElement('img');
+                var $remBtn = doc.createElement('button');
 
                 $img.src = $('[data-js="image"]').val();
                 $tdModel.textContent = $('[data-js="model"]').val();
                 $tdYear.textContent = $('[data-js="year"]').val();
                 $tdPlate.textContent = $('[data-js="plate"]').val();
                 $tdColor.textContent = $('[data-js="color"]').val();
+                $remBtn.classList += 'btn btn-danger';
+                $remBtn.textContent = 'Remover';
+                $remBtn.addEventListener('click', app.removeCar, false);
 
                 $tdImage.appendChild($img);
                 $tr.appendChild($tdImage);
@@ -55,9 +60,16 @@
                 $tr.appendChild($tdYear);
                 $tr.appendChild($tdPlate);
                 $tr.appendChild($tdColor);
+                $tdRem.appendChild($remBtn);
+                $tr.appendChild($tdRem);
                 $fragment.appendChild($tr);
                 
                 return $fragment.appendChild($tr);
+            },
+
+            removeCar: function removeCar(e) {
+                e.preventDefault();
+                $('[data-js="table-list"]').get().removeChild(this.parentNode.parentNode);
             }
         };
     })();
